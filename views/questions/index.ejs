@@ -1,0 +1,24 @@
+<h2>Questions</h2>
+
+<div class="pull-right">
+  <a class="btn btn-default" href="/admin/questions/new"> New </a>
+</div>
+<div class="pull-left">
+  <% if (questions.length == 0) { %>
+    <h4> No questions </h4>
+  <% } %>
+  <ul>
+      <% questions.forEach(function(question) { %>
+          <li>
+            <a href="/admin/questions/<%= question.id %>"> <%= question.id %> </a> 
+            <span><%= question.title %></span>
+            <span><%= question.correctAnswer ? question.correctAnswer.title : '' %></span>
+            <form method="POST" action="/admin/questions/<%=question.id%>" class="form-inline" style= "display:inline;">
+            <button class="btn btn-danger btn-xs" type="submit">Delete</button>
+            </form>
+          </li>
+      <% }); %>
+  </ul>
+</div>
+  <div class="clearfix">
+

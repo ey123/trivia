@@ -1,0 +1,57 @@
+<form action="/admin/questions" method="post">
+  <fieldset>
+    <legend>Create a new question</legend>
+    <label>
+      Title:
+      <input type="text" name="question[title]" />
+      <input type="submit" value="Create question" />
+    </label>
+    <div> 
+      <h3> Answers </h3>
+      <div class="answers-container">
+        <div>
+          <label>
+            <span> Title </span>
+            <input type="text" name="question[answers][0][title]" />
+            <input type="radio" name="question[correct]" value="0" />
+          </label>
+        </div>
+        <div>
+          <label>
+            <span> Title </span>
+            <input type="text" name="question[answers][1][title]" />
+            <input type="radio" name="question[correct]" value="1" />
+          </label>
+        </div>
+        <div>
+          <label>
+            <span> Title </span>
+            <input type="text" name="question[answers][2][title]" />
+            <input type="radio" name="question[correct]" value="2" />
+          </label>
+        </div>
+      </div>
+      <a class="btn btn-default new-answer" href="#"> New </a>
+  </fieldset>
+</form>
+
+
+<script type="text/javascript">
+  window.counter = 3
+  $(document).on("click", ".new-answer", function(e) {
+    var newItem = $("<div>")
+    var label =  $("<label>").append("<span> Title </span>")
+    var input = $("<input>", {
+      type: 'text',
+    }).attr("name", 'question[answers][' + window.counter + '][title]')
+    var radio = $("<input>", {
+      type: 'radio',
+    }).attr("name", 'question[correct]').val(window.counter)
+    $(label).append(input);
+    $(label).append(radio);
+    newItem.append(label);
+    $(".answers-container").append(newItem);
+    e.preventDefault();
+    window.counter += 1;
+  })
+</script>

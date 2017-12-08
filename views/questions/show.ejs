@@ -1,0 +1,7 @@
+<div><a href="/admin/questions">Questions</a> / <%= question.title%></div>
+
+<ul>
+    <% question.answers.forEach(function(answer) { %>
+        <li><%= answer.title %></li>
+    <% }); %>
+</ul>
